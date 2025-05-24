@@ -1,0 +1,755 @@
+warning: associated function `init_default` is never used
+   --> src/logging/mod.rs:158:12
+    |
+62  | impl Logger {
+    | ----------- associated function in this implementation
+...
+158 |     pub fn init_default() -> Result<()> {
+    |            ^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: associated functions `broker_span` and `log_connection_metrics` are never used
+   --> src/logging/mod.rs:216:12
+    |
+193 | impl LogUtils {
+    | ------------- associated functions in this implementation
+...
+216 |     pub fn broker_span(operation: &str) -> Span {
+    |            ^^^^^^^^^^^
+...
+225 |     pub fn log_connection_metrics(
+    |            ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `decode_nullable_string` is never used
+  --> src/protocol/mod.rs:44:8
+   |
+44 | pub fn decode_nullable_string(buffer: &mut BytesMut) -> ProtocolResult<Option<String>> {
+   |        ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `encode_nullable_string` is never used
+  --> src/protocol/mod.rs:51:8
+   |
+51 | pub fn encode_nullable_string(buffer: &mut BytesMut, value: Option<&str>) -> ProtocolResult<()> {
+   |        ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: associated functions `debug_hex_dump`, `peek_i16`, `peek_i32`, `decode_string`, and `encode_string` are never used
+   --> src/protocol/encoding.rs:27:12
+    |
+25  | impl WireFormat {
+    | --------------- associated functions in this implementation
+26  |     /// Prints a hex dump of the buffer for debugging
+27  |     pub fn debug_hex_dump(buffer: &BytesMut, label: &str) {
+    |            ^^^^^^^^^^^^^^
+...
+56  |     pub fn peek_i16(buffer: &BytesMut) -> ProtocolResult<i16> {
+    |            ^^^^^^^^
+...
+65  |     pub fn peek_i32(buffer: &BytesMut) -> ProtocolResult<i32> {
+    |            ^^^^^^^^
+...
+162 |     pub fn decode_string(buffer: &mut BytesMut) -> ProtocolResult<String> {
+    |            ^^^^^^^^^^^^^
+...
+190 |     pub fn encode_string(buffer: &mut BytesMut, value: &str) -> ProtocolResult<()> {
+    |            ^^^^^^^^^^^^^
+
+warning: variants `InvalidFormat`, `SerializationError`, and `BufferOverflow` are never constructed
+  --> src/protocol/errors.rs:10:5
+   |
+8  | pub enum ProtocolError {
+   |          ------------- variants in this enum
+9  |     #[error("Invalid message format: {0}")]
+10 |     InvalidFormat(String),
+   |     ^^^^^^^^^^^^^
+...
+13 |     SerializationError(String),
+   |     ^^^^^^^^^^^^^^^^^^
+...
+28 |     BufferOverflow { attempted: usize, available: usize },
+   |     ^^^^^^^^^^^^^^
+   |
+   = note: `ProtocolError` has a derived impl for the trait `Debug`, but this is intentionally ignored during dead code analysis
+
+warning: associated function `buffer_overflow` is never used
+  --> src/protocol/errors.rs:41:12
+   |
+34 | impl ProtocolError {
+   | ------------------ associated function in this implementation
+...
+41 |     pub fn buffer_overflow(attempted: usize, available: usize) -> Self {
+   |            ^^^^^^^^^^^^^^^
+
+warning: associated function `new` is never used
+  --> src/protocol/headers.rs:17:12
+   |
+15 | impl ResponseHeaderV0 {
+   | --------------------- associated function in this implementation
+16 |     /// Creates a new response header
+17 |     pub fn new(message_size: i32, correlation_id: i32) -> Self {
+   |            ^^^
+
+warning: associated functions `new`, `with_client_id`, and `without_client_id` are never used
+  --> src/protocol/headers.rs:64:12
+   |
+62 | impl RequestHeaderV2 {
+   | -------------------- associated functions in this implementation
+63 |     /// Creates a new request header
+64 |     pub fn new(
+   |            ^^^
+...
+79 |     pub fn with_client_id(
+   |            ^^^^^^^^^^^^^^
+...
+94 |     pub fn without_client_id(
+   |            ^^^^^^^^^^^^^^^^^
+
+warning: constant `MAX_STRING_LENGTH` is never used
+  --> src/protocol/mod.rs:58:15
+   |
+58 |     pub const MAX_STRING_LENGTH: usize = i16::MAX as usize;
+   |               ^^^^^^^^^^^^^^^^^
+
+warning: constant `NULL_STRING_MARKER` is never used
+  --> src/protocol/mod.rs:61:15
+   |
+61 |     pub const NULL_STRING_MARKER: i16 = -1;
+   |               ^^^^^^^^^^^^^^^^^^
+
+warning: constant `PRODUCE` is never used
+  --> src/protocol/mod.rs:65:19
+   |
+65 |         pub const PRODUCE: i16 = 0;
+   |                   ^^^^^^^
+
+warning: constant `FETCH` is never used
+  --> src/protocol/mod.rs:66:19
+   |
+66 |         pub const FETCH: i16 = 1;
+   |                   ^^^^^
+
+warning: constant `LIST_OFFSETS` is never used
+  --> src/protocol/mod.rs:67:19
+   |
+67 |         pub const LIST_OFFSETS: i16 = 2;
+   |                   ^^^^^^^^^^^^
+
+warning: constant `METADATA` is never used
+  --> src/protocol/mod.rs:68:19
+   |
+68 |         pub const METADATA: i16 = 3;
+   |                   ^^^^^^^^
+
+warning: constant `LEADER_AND_ISR` is never used
+  --> src/protocol/mod.rs:69:19
+   |
+69 |         pub const LEADER_AND_ISR: i16 = 4;
+   |                   ^^^^^^^^^^^^^^
+
+warning: constant `STOP_REPLICA` is never used
+  --> src/protocol/mod.rs:70:19
+   |
+70 |         pub const STOP_REPLICA: i16 = 5;
+   |                   ^^^^^^^^^^^^
+
+warning: constant `UPDATE_METADATA` is never used
+  --> src/protocol/mod.rs:71:19
+   |
+71 |         pub const UPDATE_METADATA: i16 = 6;
+   |                   ^^^^^^^^^^^^^^^
+
+warning: constant `CONTROLLED_SHUTDOWN` is never used
+  --> src/protocol/mod.rs:72:19
+   |
+72 |         pub const CONTROLLED_SHUTDOWN: i16 = 7;
+   |                   ^^^^^^^^^^^^^^^^^^^
+
+warning: constant `OFFSET_COMMIT` is never used
+  --> src/protocol/mod.rs:73:19
+   |
+73 |         pub const OFFSET_COMMIT: i16 = 8;
+   |                   ^^^^^^^^^^^^^
+
+warning: constant `OFFSET_FETCH` is never used
+  --> src/protocol/mod.rs:74:19
+   |
+74 |         pub const OFFSET_FETCH: i16 = 9;
+   |                   ^^^^^^^^^^^^
+
+warning: constant `FIND_COORDINATOR` is never used
+  --> src/protocol/mod.rs:75:19
+   |
+75 |         pub const FIND_COORDINATOR: i16 = 10;
+   |                   ^^^^^^^^^^^^^^^^
+
+warning: constant `JOIN_GROUP` is never used
+  --> src/protocol/mod.rs:76:19
+   |
+76 |         pub const JOIN_GROUP: i16 = 11;
+   |                   ^^^^^^^^^^
+
+warning: constant `HEARTBEAT` is never used
+  --> src/protocol/mod.rs:77:19
+   |
+77 |         pub const HEARTBEAT: i16 = 12;
+   |                   ^^^^^^^^^
+
+warning: constant `LEAVE_GROUP` is never used
+  --> src/protocol/mod.rs:78:19
+   |
+78 |         pub const LEAVE_GROUP: i16 = 13;
+   |                   ^^^^^^^^^^^
+
+warning: constant `SYNC_GROUP` is never used
+  --> src/protocol/mod.rs:79:19
+   |
+79 |         pub const SYNC_GROUP: i16 = 14;
+   |                   ^^^^^^^^^^
+
+warning: constant `DESCRIBE_GROUPS` is never used
+  --> src/protocol/mod.rs:80:19
+   |
+80 |         pub const DESCRIBE_GROUPS: i16 = 15;
+   |                   ^^^^^^^^^^^^^^^
+
+warning: constant `LIST_GROUPS` is never used
+  --> src/protocol/mod.rs:81:19
+   |
+81 |         pub const LIST_GROUPS: i16 = 16;
+   |                   ^^^^^^^^^^^
+
+warning: constant `SASL_HANDSHAKE` is never used
+  --> src/protocol/mod.rs:82:19
+   |
+82 |         pub const SASL_HANDSHAKE: i16 = 17;
+   |                   ^^^^^^^^^^^^^^
+
+warning: constant `API_VERSIONS` is never used
+  --> src/protocol/mod.rs:83:19
+   |
+83 |         pub const API_VERSIONS: i16 = 18;
+   |                   ^^^^^^^^^^^^
+
+warning: constant `NONE` is never used
+  --> src/protocol/mod.rs:88:19
+   |
+88 |         pub const NONE: i16 = 0;
+   |                   ^^^^
+
+warning: constant `OFFSET_OUT_OF_RANGE` is never used
+  --> src/protocol/mod.rs:89:19
+   |
+89 |         pub const OFFSET_OUT_OF_RANGE: i16 = 1;
+   |                   ^^^^^^^^^^^^^^^^^^^
+
+warning: constant `CORRUPT_MESSAGE` is never used
+  --> src/protocol/mod.rs:90:19
+   |
+90 |         pub const CORRUPT_MESSAGE: i16 = 2;
+   |                   ^^^^^^^^^^^^^^^
+
+warning: constant `UNKNOWN_TOPIC_OR_PARTITION` is never used
+  --> src/protocol/mod.rs:91:19
+   |
+91 |         pub const UNKNOWN_TOPIC_OR_PARTITION: i16 = 3;
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `INVALID_FETCH_SIZE` is never used
+  --> src/protocol/mod.rs:92:19
+   |
+92 |         pub const INVALID_FETCH_SIZE: i16 = 4;
+   |                   ^^^^^^^^^^^^^^^^^^
+
+warning: constant `LEADER_NOT_AVAILABLE` is never used
+  --> src/protocol/mod.rs:93:19
+   |
+93 |         pub const LEADER_NOT_AVAILABLE: i16 = 5;
+   |                   ^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `NOT_LEADER_FOR_PARTITION` is never used
+  --> src/protocol/mod.rs:94:19
+   |
+94 |         pub const NOT_LEADER_FOR_PARTITION: i16 = 6;
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `REQUEST_TIMED_OUT` is never used
+  --> src/protocol/mod.rs:95:19
+   |
+95 |         pub const REQUEST_TIMED_OUT: i16 = 7;
+   |                   ^^^^^^^^^^^^^^^^^
+
+warning: constant `BROKER_NOT_AVAILABLE` is never used
+  --> src/protocol/mod.rs:96:19
+   |
+96 |         pub const BROKER_NOT_AVAILABLE: i16 = 8;
+   |                   ^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `REPLICA_NOT_AVAILABLE` is never used
+  --> src/protocol/mod.rs:97:19
+   |
+97 |         pub const REPLICA_NOT_AVAILABLE: i16 = 9;
+   |                   ^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `MESSAGE_TOO_LARGE` is never used
+  --> src/protocol/mod.rs:98:19
+   |
+98 |         pub const MESSAGE_TOO_LARGE: i16 = 10;
+   |                   ^^^^^^^^^^^^^^^^^
+
+warning: constant `STALE_CONTROLLER_EPOCH` is never used
+  --> src/protocol/mod.rs:99:19
+   |
+99 |         pub const STALE_CONTROLLER_EPOCH: i16 = 11;
+   |                   ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `OFFSET_METADATA_TOO_LARGE` is never used
+   --> src/protocol/mod.rs:100:19
+    |
+100 |         pub const OFFSET_METADATA_TOO_LARGE: i16 = 12;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `NETWORK_EXCEPTION` is never used
+   --> src/protocol/mod.rs:101:19
+    |
+101 |         pub const NETWORK_EXCEPTION: i16 = 13;
+    |                   ^^^^^^^^^^^^^^^^^
+
+warning: constant `COORDINATOR_LOAD_IN_PROGRESS` is never used
+   --> src/protocol/mod.rs:102:19
+    |
+102 |         pub const COORDINATOR_LOAD_IN_PROGRESS: i16 = 14;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `COORDINATOR_NOT_AVAILABLE` is never used
+   --> src/protocol/mod.rs:103:19
+    |
+103 |         pub const COORDINATOR_NOT_AVAILABLE: i16 = 15;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `NOT_COORDINATOR` is never used
+   --> src/protocol/mod.rs:104:19
+    |
+104 |         pub const NOT_COORDINATOR: i16 = 16;
+    |                   ^^^^^^^^^^^^^^^
+
+warning: constant `INVALID_TOPIC_EXCEPTION` is never used
+   --> src/protocol/mod.rs:105:19
+    |
+105 |         pub const INVALID_TOPIC_EXCEPTION: i16 = 17;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `RECORD_LIST_TOO_LARGE` is never used
+   --> src/protocol/mod.rs:106:19
+    |
+106 |         pub const RECORD_LIST_TOO_LARGE: i16 = 18;
+    |                   ^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `NOT_ENOUGH_REPLICAS` is never used
+   --> src/protocol/mod.rs:107:19
+    |
+107 |         pub const NOT_ENOUGH_REPLICAS: i16 = 19;
+    |                   ^^^^^^^^^^^^^^^^^^^
+
+warning: constant `NOT_ENOUGH_REPLICAS_AFTER_APPEND` is never used
+   --> src/protocol/mod.rs:108:19
+    |
+108 |         pub const NOT_ENOUGH_REPLICAS_AFTER_APPEND: i16 = 20;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `INVALID_REQUIRED_ACKS` is never used
+   --> src/protocol/mod.rs:109:19
+    |
+109 |         pub const INVALID_REQUIRED_ACKS: i16 = 21;
+    |                   ^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `ILLEGAL_GENERATION` is never used
+   --> src/protocol/mod.rs:110:19
+    |
+110 |         pub const ILLEGAL_GENERATION: i16 = 22;
+    |                   ^^^^^^^^^^^^^^^^^^
+
+warning: constant `INCONSISTENT_GROUP_PROTOCOL` is never used
+   --> src/protocol/mod.rs:111:19
+    |
+111 |         pub const INCONSISTENT_GROUP_PROTOCOL: i16 = 23;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `INVALID_GROUP_ID` is never used
+   --> src/protocol/mod.rs:112:19
+    |
+112 |         pub const INVALID_GROUP_ID: i16 = 24;
+    |                   ^^^^^^^^^^^^^^^^
+
+warning: constant `UNKNOWN_MEMBER_ID` is never used
+   --> src/protocol/mod.rs:113:19
+    |
+113 |         pub const UNKNOWN_MEMBER_ID: i16 = 25;
+    |                   ^^^^^^^^^^^^^^^^^
+
+warning: constant `INVALID_SESSION_TIMEOUT` is never used
+   --> src/protocol/mod.rs:114:19
+    |
+114 |         pub const INVALID_SESSION_TIMEOUT: i16 = 26;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `REBALANCE_IN_PROGRESS` is never used
+   --> src/protocol/mod.rs:115:19
+    |
+115 |         pub const REBALANCE_IN_PROGRESS: i16 = 27;
+    |                   ^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `INVALID_COMMIT_OFFSET_SIZE` is never used
+   --> src/protocol/mod.rs:116:19
+    |
+116 |         pub const INVALID_COMMIT_OFFSET_SIZE: i16 = 28;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `TOPIC_AUTHORIZATION_FAILED` is never used
+   --> src/protocol/mod.rs:117:19
+    |
+117 |         pub const TOPIC_AUTHORIZATION_FAILED: i16 = 29;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `GROUP_AUTHORIZATION_FAILED` is never used
+   --> src/protocol/mod.rs:118:19
+    |
+118 |         pub const GROUP_AUTHORIZATION_FAILED: i16 = 30;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `CLUSTER_AUTHORIZATION_FAILED` is never used
+   --> src/protocol/mod.rs:119:19
+    |
+119 |         pub const CLUSTER_AUTHORIZATION_FAILED: i16 = 31;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `INVALID_TIMESTAMP` is never used
+   --> src/protocol/mod.rs:120:19
+    |
+120 |         pub const INVALID_TIMESTAMP: i16 = 32;
+    |                   ^^^^^^^^^^^^^^^^^
+
+warning: constant `UNSUPPORTED_SASL_MECHANISM` is never used
+   --> src/protocol/mod.rs:121:19
+    |
+121 |         pub const UNSUPPORTED_SASL_MECHANISM: i16 = 33;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `ILLEGAL_SASL_STATE` is never used
+   --> src/protocol/mod.rs:122:19
+    |
+122 |         pub const ILLEGAL_SASL_STATE: i16 = 34;
+    |                   ^^^^^^^^^^^^^^^^^^
+
+warning: constant `UNSUPPORTED_VERSION` is never used
+   --> src/protocol/mod.rs:123:19
+    |
+123 |         pub const UNSUPPORTED_VERSION: i16 = 35;
+    |                   ^^^^^^^^^^^^^^^^^^^
+
+warning: constant `TOPIC_ALREADY_EXISTS` is never used
+   --> src/protocol/mod.rs:124:19
+    |
+124 |         pub const TOPIC_ALREADY_EXISTS: i16 = 36;
+    |                   ^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `INVALID_PARTITIONS` is never used
+   --> src/protocol/mod.rs:125:19
+    |
+125 |         pub const INVALID_PARTITIONS: i16 = 37;
+    |                   ^^^^^^^^^^^^^^^^^^
+
+warning: constant `INVALID_REPLICATION_FACTOR` is never used
+   --> src/protocol/mod.rs:126:19
+    |
+126 |         pub const INVALID_REPLICATION_FACTOR: i16 = 38;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `INVALID_REPLICA_ASSIGNMENT` is never used
+   --> src/protocol/mod.rs:127:19
+    |
+127 |         pub const INVALID_REPLICA_ASSIGNMENT: i16 = 39;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `INVALID_CONFIG` is never used
+   --> src/protocol/mod.rs:128:19
+    |
+128 |         pub const INVALID_CONFIG: i16 = 40;
+    |                   ^^^^^^^^^^^^^^
+
+warning: constant `NOT_CONTROLLER` is never used
+   --> src/protocol/mod.rs:129:19
+    |
+129 |         pub const NOT_CONTROLLER: i16 = 41;
+    |                   ^^^^^^^^^^^^^^
+
+warning: constant `INVALID_REQUEST` is never used
+   --> src/protocol/mod.rs:130:19
+    |
+130 |         pub const INVALID_REQUEST: i16 = 42;
+    |                   ^^^^^^^^^^^^^^^
+
+warning: constant `UNSUPPORTED_FOR_MESSAGE_FORMAT` is never used
+   --> src/protocol/mod.rs:131:19
+    |
+131 |         pub const UNSUPPORTED_FOR_MESSAGE_FORMAT: i16 = 43;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `POLICY_VIOLATION` is never used
+   --> src/protocol/mod.rs:132:19
+    |
+132 |         pub const POLICY_VIOLATION: i16 = 44;
+    |                   ^^^^^^^^^^^^^^^^
+
+warning: constant `OUT_OF_ORDER_SEQUENCE_NUMBER` is never used
+   --> src/protocol/mod.rs:133:19
+    |
+133 |         pub const OUT_OF_ORDER_SEQUENCE_NUMBER: i16 = 45;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `DUPLICATE_SEQUENCE_NUMBER` is never used
+   --> src/protocol/mod.rs:134:19
+    |
+134 |         pub const DUPLICATE_SEQUENCE_NUMBER: i16 = 46;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `INVALID_PRODUCER_EPOCH` is never used
+   --> src/protocol/mod.rs:135:19
+    |
+135 |         pub const INVALID_PRODUCER_EPOCH: i16 = 47;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `INVALID_TXN_STATE` is never used
+   --> src/protocol/mod.rs:136:19
+    |
+136 |         pub const INVALID_TXN_STATE: i16 = 48;
+    |                   ^^^^^^^^^^^^^^^^^
+
+warning: constant `INVALID_PRODUCER_ID_MAPPING` is never used
+   --> src/protocol/mod.rs:137:19
+    |
+137 |         pub const INVALID_PRODUCER_ID_MAPPING: i16 = 49;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `INVALID_TRANSACTION_TIMEOUT` is never used
+   --> src/protocol/mod.rs:138:19
+    |
+138 |         pub const INVALID_TRANSACTION_TIMEOUT: i16 = 50;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `CONCURRENT_TRANSACTIONS` is never used
+   --> src/protocol/mod.rs:139:19
+    |
+139 |         pub const CONCURRENT_TRANSACTIONS: i16 = 51;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `TRANSACTION_COORDINATOR_FENCED` is never used
+   --> src/protocol/mod.rs:140:19
+    |
+140 |         pub const TRANSACTION_COORDINATOR_FENCED: i16 = 52;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `TRANSACTIONAL_ID_AUTHORIZATION_FAILED` is never used
+   --> src/protocol/mod.rs:141:19
+    |
+141 |         pub const TRANSACTIONAL_ID_AUTHORIZATION_FAILED: i16 = 53;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `SECURITY_DISABLED` is never used
+   --> src/protocol/mod.rs:142:19
+    |
+142 |         pub const SECURITY_DISABLED: i16 = 54;
+    |                   ^^^^^^^^^^^^^^^^^
+
+warning: constant `OPERATION_NOT_ATTEMPTED` is never used
+   --> src/protocol/mod.rs:143:19
+    |
+143 |         pub const OPERATION_NOT_ATTEMPTED: i16 = 55;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `KAFKA_STORAGE_ERROR` is never used
+   --> src/protocol/mod.rs:144:19
+    |
+144 |         pub const KAFKA_STORAGE_ERROR: i16 = 56;
+    |                   ^^^^^^^^^^^^^^^^^^^
+
+warning: constant `LOG_DIR_NOT_FOUND` is never used
+   --> src/protocol/mod.rs:145:19
+    |
+145 |         pub const LOG_DIR_NOT_FOUND: i16 = 57;
+    |                   ^^^^^^^^^^^^^^^^^
+
+warning: constant `SASL_AUTHENTICATION_FAILED` is never used
+   --> src/protocol/mod.rs:146:19
+    |
+146 |         pub const SASL_AUTHENTICATION_FAILED: i16 = 58;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `UNKNOWN_PRODUCER_ID` is never used
+   --> src/protocol/mod.rs:147:19
+    |
+147 |         pub const UNKNOWN_PRODUCER_ID: i16 = 59;
+    |                   ^^^^^^^^^^^^^^^^^^^
+
+warning: constant `REASSIGNMENT_IN_PROGRESS` is never used
+   --> src/protocol/mod.rs:148:19
+    |
+148 |         pub const REASSIGNMENT_IN_PROGRESS: i16 = 60;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `DELEGATION_TOKEN_AUTH_DISABLED` is never used
+   --> src/protocol/mod.rs:149:19
+    |
+149 |         pub const DELEGATION_TOKEN_AUTH_DISABLED: i16 = 61;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `DELEGATION_TOKEN_NOT_FOUND` is never used
+   --> src/protocol/mod.rs:150:19
+    |
+150 |         pub const DELEGATION_TOKEN_NOT_FOUND: i16 = 62;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `DELEGATION_TOKEN_OWNER_MISMATCH` is never used
+   --> src/protocol/mod.rs:151:19
+    |
+151 |         pub const DELEGATION_TOKEN_OWNER_MISMATCH: i16 = 63;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `DELEGATION_TOKEN_REQUEST_NOT_ALLOWED` is never used
+   --> src/protocol/mod.rs:152:19
+    |
+152 |         pub const DELEGATION_TOKEN_REQUEST_NOT_ALLOWED: i16 = 64;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `DELEGATION_TOKEN_AUTHORIZATION_FAILED` is never used
+   --> src/protocol/mod.rs:153:19
+    |
+153 |         pub const DELEGATION_TOKEN_AUTHORIZATION_FAILED: i16 = 65;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `DELEGATION_TOKEN_EXPIRED` is never used
+   --> src/protocol/mod.rs:154:19
+    |
+154 |         pub const DELEGATION_TOKEN_EXPIRED: i16 = 66;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `INVALID_PRINCIPAL_TYPE` is never used
+   --> src/protocol/mod.rs:155:19
+    |
+155 |         pub const INVALID_PRINCIPAL_TYPE: i16 = 67;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `NON_EMPTY_GROUP` is never used
+   --> src/protocol/mod.rs:156:19
+    |
+156 |         pub const NON_EMPTY_GROUP: i16 = 68;
+    |                   ^^^^^^^^^^^^^^^
+
+warning: constant `GROUP_ID_NOT_FOUND` is never used
+   --> src/protocol/mod.rs:157:19
+    |
+157 |         pub const GROUP_ID_NOT_FOUND: i16 = 69;
+    |                   ^^^^^^^^^^^^^^^^^^
+
+warning: constant `FETCH_SESSION_ID_NOT_FOUND` is never used
+   --> src/protocol/mod.rs:158:19
+    |
+158 |         pub const FETCH_SESSION_ID_NOT_FOUND: i16 = 70;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `INVALID_FETCH_SESSION_EPOCH` is never used
+   --> src/protocol/mod.rs:159:19
+    |
+159 |         pub const INVALID_FETCH_SESSION_EPOCH: i16 = 71;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `LISTENER_NOT_FOUND` is never used
+   --> src/protocol/mod.rs:160:19
+    |
+160 |         pub const LISTENER_NOT_FOUND: i16 = 72;
+    |                   ^^^^^^^^^^^^^^^^^^
+
+warning: constant `TOPIC_DELETION_DISABLED` is never used
+   --> src/protocol/mod.rs:161:19
+    |
+161 |         pub const TOPIC_DELETION_DISABLED: i16 = 73;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `FENCED_LEADER_EPOCH` is never used
+   --> src/protocol/mod.rs:162:19
+    |
+162 |         pub const FENCED_LEADER_EPOCH: i16 = 74;
+    |                   ^^^^^^^^^^^^^^^^^^^
+
+warning: constant `UNKNOWN_LEADER_EPOCH` is never used
+   --> src/protocol/mod.rs:163:19
+    |
+163 |         pub const UNKNOWN_LEADER_EPOCH: i16 = 75;
+    |                   ^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `UNSUPPORTED_COMPRESSION_TYPE` is never used
+   --> src/protocol/mod.rs:164:19
+    |
+164 |         pub const UNSUPPORTED_COMPRESSION_TYPE: i16 = 76;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `STALE_BROKER_EPOCH` is never used
+   --> src/protocol/mod.rs:165:19
+    |
+165 |         pub const STALE_BROKER_EPOCH: i16 = 77;
+    |                   ^^^^^^^^^^^^^^^^^^
+
+warning: constant `OFFSET_NOT_AVAILABLE` is never used
+   --> src/protocol/mod.rs:166:19
+    |
+166 |         pub const OFFSET_NOT_AVAILABLE: i16 = 78;
+    |                   ^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `MEMBER_ID_REQUIRED` is never used
+   --> src/protocol/mod.rs:167:19
+    |
+167 |         pub const MEMBER_ID_REQUIRED: i16 = 79;
+    |                   ^^^^^^^^^^^^^^^^^^
+
+warning: constant `PREFERRED_LEADER_NOT_AVAILABLE` is never used
+   --> src/protocol/mod.rs:168:19
+    |
+168 |         pub const PREFERRED_LEADER_NOT_AVAILABLE: i16 = 80;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `GROUP_MAX_SIZE_REACHED` is never used
+   --> src/protocol/mod.rs:169:19
+    |
+169 |         pub const GROUP_MAX_SIZE_REACHED: i16 = 81;
+    |                   ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `FENCED_INSTANCE_ID` is never used
+   --> src/protocol/mod.rs:170:19
+    |
+170 |         pub const FENCED_INSTANCE_ID: i16 = 82;
+    |                   ^^^^^^^^^^^^^^^^^^
+
+warning: `codecrafters-kafka` (bin "codecrafters-kafka") generated 113 warnings
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.08s
+     Running `target/debug/codecrafters-kafka`
+[2m2025-05-24T02:34:52.672510+00:00[0m [32m INFO[0m ThreadId(01) [2mcodecrafters_kafka::logging[0m[2m:[0m Logging system initialized [3mconfig[0m[2m=[0mLogConfig { level: "info", console: true, file: true, log_dir: "./logs", file_prefix: "kafka-broker", json_format: false, with_timestamp: true, with_thread_ids: true, with_spans: true }
+[2m2025-05-24T02:34:52.672593+00:00[0m [32m INFO[0m ThreadId(01) [2mcodecrafters_kafka::logging[0m[2m:[0m Kafka broker started [3maddr[0m[2m=[0m127.0.0.1:9092 [3mversion[0m[2m=[0m"0.1.0"
+[2m2025-05-24T02:34:52.672660+00:00[0m [32m INFO[0m ThreadId(01) [2mcodecrafters_kafka::network::server[0m[2m:[0m Server listening for connections [3maddr[0m[2m=[0m127.0.0.1:9092
+[2m2025-05-24T02:34:58.923131+00:00[0m [32m INFO[0m ThreadId(01) [2mcodecrafters_kafka::network::server[0m[2m:[0m Accepted new connection [3mpeer_addr[0m[2m=[0m127.0.0.1:62782
+[2m2025-05-24T02:34:58.923378+00:00[0m [32m INFO[0m ThreadId(08) [1mconnection[0m[1m{[0m[3mpeer_addr[0m[2m=[0m127.0.0.1:62782[1m}[0m[2m:[0m [2mcodecrafters_kafka::logging[0m[2m:[0m new
+[2m2025-05-24T02:34:58.923478+00:00[0m [32m INFO[0m ThreadId(08) [1mconnection[0m[1m{[0m[3mpeer_addr[0m[2m=[0m127.0.0.1:62782[1m}[0m[2m:[0m[1mrequest[0m[1m{[0m[3mapi_key[0m[2m=[0m18 [3mcorrelation_id[0m[2m=[0m1 [3mclient_id[0m[2m=[0m"test-client"[1m}[0m[2m:[0m [2mcodecrafters_kafka::logging[0m[2m:[0m new
+[2m2025-05-24T02:34:58.923516+00:00[0m [32m INFO[0m ThreadId(08) [1mconnection[0m[1m{[0m[3mpeer_addr[0m[2m=[0m127.0.0.1:62782[1m}[0m[2m:[0m[1mrequest[0m[1m{[0m[3mapi_key[0m[2m=[0m18 [3mcorrelation_id[0m[2m=[0m1 [3mclient_id[0m[2m=[0m"test-client"[1m}[0m[2m:[0m [2mcodecrafters_kafka::logging[0m[2m:[0m Request processed successfully [3mapi_key[0m[2m=[0m18 [3mcorrelation_id[0m[2m=[0m1 [3mrequest_size[0m[2m=[0m22 [3mresponse_size[0m[2m=[0m24 [3mprocessing_time_ms[0m[2m=[0m0
+[2m2025-05-24T02:34:58.923556+00:00[0m [32m INFO[0m ThreadId(08) [1mconnection[0m[1m{[0m[3mpeer_addr[0m[2m=[0m127.0.0.1:62782[1m}[0m[2m:[0m[1mrequest[0m[1m{[0m[3mapi_key[0m[2m=[0m18 [3mcorrelation_id[0m[2m=[0m1 [3mclient_id[0m[2m=[0m"test-client"[1m}[0m[2m:[0m [2mcodecrafters_kafka::logging[0m[2m:[0m close [3mtime.busy[0m[2m=[0m44.2µs [3mtime.idle[0m[2m=[0m35.3µs
+[2m2025-05-24T02:34:58.923792+00:00[0m [32m INFO[0m ThreadId(04) [1mrequest[0m[1m{[0m[3mapi_key[0m[2m=[0m3 [3mcorrelation_id[0m[2m=[0m2[1m}[0m[2m:[0m [2mcodecrafters_kafka::logging[0m[2m:[0m new
+[2m2025-05-24T02:34:58.923842+00:00[0m [33m WARN[0m ThreadId(04) [1mrequest[0m[1m{[0m[3mapi_key[0m[2m=[0m3 [3mcorrelation_id[0m[2m=[0m2[1m}[0m[2m:[0m [2mcodecrafters_kafka::kafka::broker[0m[2m:[0m Unsupported API key, returning error response [3mapi_key[0m[2m=[0m3
+[2m2025-05-24T02:34:58.923871+00:00[0m [33m WARN[0m ThreadId(04) [1mrequest[0m[1m{[0m[3mapi_key[0m[2m=[0m3 [3mcorrelation_id[0m[2m=[0m2[1m}[0m[2m:[0m [2mcodecrafters_kafka::kafka::broker[0m[2m:[0m Generating error response for unsupported API [3mapi_key[0m[2m=[0m3
+[2m2025-05-24T02:34:58.923897+00:00[0m [32m INFO[0m ThreadId(04) [1mrequest[0m[1m{[0m[3mapi_key[0m[2m=[0m3 [3mcorrelation_id[0m[2m=[0m2[1m}[0m[2m:[0m [2mcodecrafters_kafka::logging[0m[2m:[0m Request processed successfully [3mapi_key[0m[2m=[0m3 [3mcorrelation_id[0m[2m=[0m2 [3mrequest_size[0m[2m=[0m15 [3mresponse_size[0m[2m=[0m10 [3mprocessing_time_ms[0m[2m=[0m0
+[2m2025-05-24T02:34:58.923932+00:00[0m [32m INFO[0m ThreadId(04) [1mrequest[0m[1m{[0m[3mapi_key[0m[2m=[0m3 [3mcorrelation_id[0m[2m=[0m2[1m}[0m[2m:[0m [2mcodecrafters_kafka::logging[0m[2m:[0m close [3mtime.busy[0m[2m=[0m94.7µs [3mtime.idle[0m[2m=[0m48.0µs
+[2m2025-05-24T02:34:58.923981+00:00[0m [32m INFO[0m ThreadId(04) [2mcodecrafters_kafka::kafka::broker[0m[2m:[0m Client disconnected [3mpeer_addr[0m[2m=[0m127.0.0.1:62782
+[2m2025-05-24T02:34:58.924019+00:00[0m [32m INFO[0m ThreadId(04) [2mcodecrafters_kafka::network::server[0m[2m:[0m Connection handled successfully [3mduration_ms[0m[2m=[0m0
+[2m2025-05-24T02:35:03.944879+00:00[0m [32m INFO[0m ThreadId(04) [2mcodecrafters_kafka::network::server[0m[2m:[0m Received SIGTERM signal
+[2m2025-05-24T02:35:03.945035+00:00[0m [32m INFO[0m ThreadId(04) [2mcodecrafters_kafka::network::server[0m[2m:[0m Shutdown signal received, initiating graceful shutdown
+[2m2025-05-24T02:35:03.945119+00:00[0m [32m INFO[0m ThreadId(01) [2mcodecrafters_kafka::network::server[0m[2m:[0m Server shutdown initiated
+[2m2025-05-24T02:35:03.945174+00:00[0m [32m INFO[0m ThreadId(01) [2mcodecrafters_kafka::network::server[0m[2m:[0m Waiting for active connections to finish
+[2m2025-05-24T02:35:04.046646+00:00[0m [32m INFO[0m ThreadId(01) [2mcodecrafters_kafka::network::server[0m[2m:[0m All connections finished gracefully
+[2m2025-05-24T02:35:04.046728+00:00[0m [32m INFO[0m ThreadId(01) [2mcodecrafters_kafka::network::server[0m[2m:[0m Network server shutdown complete
+[2m2025-05-24T02:35:04.046783+00:00[0m [32m INFO[0m ThreadId(01) [2mcodecrafters_kafka::logging[0m[2m:[0m Kafka broker shutdown completed gracefully [3mactive_connections[0m[2m=[0m0

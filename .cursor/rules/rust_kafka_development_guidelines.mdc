@@ -1,0 +1,71 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Rust Kafka Implementation: Best Practices & SOLID Principles
+
+This project aims to implement a Kafka-like message broker from scratch using Rust. The following guidelines should be adhered to throughout the development process to ensure a robust, maintainable, and scalable system.
+
+## Main Entry Point
+The primary entry point for the application is currently [src/main.rs](mdc:src/main.rs).
+
+## Rust Best Practices
+
+1.  **Ownership and Borrowing**: Leverage Rust's ownership system to ensure memory safety without a garbage collector. Pay close attention to lifetimes and borrowing rules.
+2.  **Error Handling**:
+    *   Use `Result<T, E>` for recoverable errors and `panic!` for unrecoverable errors.
+    *   Consider using crates like `thiserror` for defining custom error types and `anyhow` for simpler error propagation in application-level code.
+3.  **Concurrency and Asynchronicity**:
+    *   Utilize `async/await` for non-blocking I/O operations, especially for network communication and message processing.
+    *   Prefer `tokio` or `async-std` as the asynchronous runtime.
+    *   Employ Rust's concurrency primitives (e.g., `Arc`, `Mutex`, `RwLock`, channels) safely.
+4.  **Modularity**:
+    *   Organize code into logical modules and crates.
+    *   Clearly define public APIs for each module.
+5.  **Testing**:
+    *   Write comprehensive unit tests for individual components.
+    *   Implement integration tests to verify interactions between components.
+    *   Use Rust's built-in testing framework (`#[test]`).
+6.  **Linting**:
+    *   Regularly use `clippy` (`cargo clippy`) to catch common mistakes and improve code quality.
+7.  **Documentation**:
+    *   Write clear and concise documentation for public APIs using `rustdoc`.
+    *   Comment complex or non-obvious logic.
+8.  **Dependencies**:
+    *   Carefully manage dependencies using `Cargo.toml`.
+    *   Keep dependencies updated and audit for security vulnerabilities.
+
+## SOLID Principles
+
+Apply SOLID principles to guide the design of structs, enums, traits, and modules:
+
+1.  **Single Responsibility Principle (SRP)**:
+    *   Each component (struct, module) should have a single, well-defined responsibility.
+    *   Example: Separate concerns for network protocol handling, message serialization/deserialization, topic management, log storage, and consumer offset management.
+
+2.  **Open/Closed Principle (OCP)**:
+    *   Software entities should be open for extension but closed for modification.
+    *   Use traits (interfaces) and generics to allow new functionalities (e.g., different storage engines, compression algorithms) without altering existing, stable code.
+
+3.  **Liskov Substitution Principle (LSP)**:
+    *   Objects of a superclass (or implementers of a trait) should be replaceable with objects of its subclasses (or other implementers) without affecting the correctness of the program.
+    *   Ensure that trait implementations fully adhere to the defined contract of the trait.
+
+4.  **Interface Segregation Principle (ISP)**:
+    *   Clients should not be forced to depend on methods they do not use.
+    *   Define small, cohesive traits rather than large, monolithic ones. Clients should only need to know about the methods relevant to them.
+
+5.  **Dependency Inversion Principle (DIP)**:
+    *   High-level modules should not depend on low-level modules. Both should depend on abstractions (e.g., traits).
+    *   Abstractions should not depend on details. Details should depend on abstractions.
+    *   Employ dependency injection where appropriate to decouple components.
+
+## Kafka-Specific Considerations
+
+*   **Message Handling**: Design efficient and safe parsing and serialization of Kafka protocol messages.
+*   **Log Storage**: Implement a durable and high-performance log append mechanism. Consider segment-based log storage, indexing, and log compaction/retention.
+*   **Producers & Consumers**: Design APIs for producing messages to topics and consuming messages from topics, including offset management.
+*   **Broker & Cluster**: While starting with a single broker, keep in mind future extensions for a distributed cluster (leader election, data replication).
+
+By following these guidelines, we aim to build a high-quality Kafka implementation in Rust.
